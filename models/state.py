@@ -24,3 +24,4 @@ class State(BaseModel, Base):
             if city.state_id == State.id:
                 filter.append(city)
         return filter
+
