@@ -45,12 +45,12 @@ class DBStorage:
 
         session = self.__session
         dic = {}
-        if not cls:
-            tables = [User, State, City, Amenity, Place, Review]
+        if cls is None:
+            tables = [State, City, User, Place]
 
         else:
             if type(cls) == str:
-                cls = eval(csl)
+                cls = eval(cls)
 
             tables = [cls]
 
@@ -58,14 +58,14 @@ class DBStorage:
             query = session.query(t).all()
 
             for rows in query:
-                key = "{}.{}".format(type(rows).__name__, rows.id)
+                key = "{}.{}".format(rows.__class__.__name__, rows.id)
                 dic[key] = rows
 
         return dic
 
     def new(self, obj):
         """ add the object to the current database session """
-        if obj:
+        if obj is not None:
             self.__session.add(obj)
 
     def save(self):
@@ -75,7 +75,7 @@ class DBStorage:
     def delete(self, obj=None):
         """ delete from module import symbol
         the current database session obj if not None """
-        if obj:
+        if obj is not None:
             self.__session.delete(obj)
 
     def reload(self):

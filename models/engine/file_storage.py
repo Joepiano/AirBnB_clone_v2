@@ -64,14 +64,3 @@ class FileStorage:
                 del FileStorage.__objects[key]
             except Exception:
                 return
-
-
-
-
-
-
-
-
-
-
-
