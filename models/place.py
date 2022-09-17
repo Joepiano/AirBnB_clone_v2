@@ -41,6 +41,7 @@ class Place(BaseModel, Base):
                              viewonly=False, backref='place_amenities')
     reviews = relationship('Review', backref='place',
                            cascade="all, delete, delete-orphan")
+    amenity_ids = []
 
     @property
     def reviews(self):
@@ -68,4 +69,4 @@ class Place(BaseModel, Base):
             to amenity_ids"""
         from models.amenity import Amenity
         if obj is Amenity:
-            self.amenity_ids.append(obj.id)
+            Place.amenity_ids.append(obj.id)
