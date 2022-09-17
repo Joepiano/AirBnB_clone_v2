@@ -38,7 +38,7 @@ class Place(BaseModel, Base):
                           Column('amenity_id', String(60),
                                  ForeignKey('amenities.id'), primary_key=True))
     amenities = relationship('Amenity', secondary=place_amenity,
-                             viewonly=False)
+                             viewonly=False, backref='place_amenities')
     reviews = relationship('Review', backref='place',
                            cascade="all, delete, delete-orphan")
 
