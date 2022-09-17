@@ -69,4 +69,4 @@ class Place(BaseModel, Base):
             to amenity_ids"""
         from models.amenity import Amenity
         if obj is Amenity:
-            Place.amenity_ids.append(obj)
+            Place.amenity_ids.append(obj.id)
