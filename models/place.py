@@ -31,7 +31,6 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
-    amenity_ids = []
     place_amenity = Table('place_amenity', Base.metadata,
                           Column('place_id', String(60),
                                  ForeignKey('places.id'),
@@ -69,4 +68,4 @@ class Place(BaseModel, Base):
             to amenity_ids"""
         from models.amenity import Amenity
         if obj is Amenity:
-            Place.amenity_ids.append(obj.id)
+            self.amenity_ids.append(obj.id)
